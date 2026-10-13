@@ -1,0 +1,10 @@
+{
+  "name": "svoya-statistika",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {"test":"node tests/verify.mjs && node tests/tracker.mjs", "demo":"node scripts/demo.mjs"},
+  "devDependencies": {"@php-wasm/node":"3.1.58","@php-wasm/universal":"3.1.58","playwright":"1.64.0"},
+  "engines": {"node":">=24.18.0","npm":">=11.16.0"}
+}

@@ -1,0 +1,32 @@
+<!-- MIT. Example markup, not a universal legal consent. Adapt text and link to the site's actual policy. -->
+<script defer src="/site-stats/tracker.php"></script>
+<div id="stats-consent" hidden role="region" aria-label="Аналитика сайта">
+  <p>Разрешить собственную аналитику сайта? Она учитывает просмотры и действия.
+    <a href="/privacy">Как обрабатываются данные</a>
+  </p>
+  <button type="button" id="stats-accept">Разрешить</button>
+  <button type="button" id="stats-reject">Отказаться</button>
+</div>
+<!-- Put this control on an accessible privacy/settings page even after the banner is closed. -->
+<button type="button" data-stats-revoke>Отключить аналитику</button>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const banner = document.getElementById('stats-consent');
+  if (!window.SiteStats) return;
+  let decision = null;
+  try { decision = localStorage.getItem('site-stats:consent:v1'); } catch {}
+  banner.hidden = decision === 'accepted' || decision === 'rejected';
+  document.getElementById('stats-accept').addEventListener('click', () => {
+    window.SiteStats.consent(true);
+    banner.hidden = true;
+  });
+  document.getElementById('stats-reject').addEventListener('click', () => {
+    window.SiteStats.consent(false);
+    banner.hidden = true;
+  });
+  document.querySelector('[data-stats-revoke]').addEventListener('click', () => {
+    // Tracker also handles this data attribute. Showing the banner allows reconsideration.
+    banner.hidden = false;
+  });
+});
+</script>

@@ -1,0 +1,10 @@
+node_modules/
+site-stats-private/
+**/site-stats-private/
+.env
+.env.*
+*.log
+.DS_Store
+artifacts/
+GATES.md
+DESIGN.md
